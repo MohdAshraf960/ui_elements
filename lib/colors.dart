@@ -14,6 +14,7 @@ class AppColor {
   static const Color errorColor = Color(0xFFFF4B4A);
 
   static const Color textFieldBackgroundColor = Color(0xFFF5F7FA);
+  static const Color hintTextColor = Color(0xFF9FB1CE);
 
   static const Color whiteColor = Colors.white;
 
