@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui_elements/ui_elements.dart';
 
-class AppButton extends StatelessWidget {
-  const AppButton._({
+class AppLoaderButton extends StatelessWidget {
+  const AppLoaderButton._({
     required this.onPressed,
     required this.title,
     this.isDisabled = false,
@@ -25,7 +25,7 @@ class AppButton extends StatelessWidget {
   final TextStyle? textStyle;
 
   /// Private helper method to create an AppButton
-  static AppButton _createButton({
+  static AppLoaderButton _createButton({
     required VoidCallback onPressed,
     required String title,
     required Color backgroundColor,
@@ -36,7 +36,7 @@ class AppButton extends StatelessWidget {
     Color? loaderColor,
     AppTextStyle? textStyle,
   }) {
-    return AppButton._(
+    return AppLoaderButton._(
       isLoading: isLoading,
       onPressed: onPressed,
       title: title,
@@ -54,7 +54,7 @@ class AppButton extends StatelessWidget {
   }
 
   /// Factory constructor for primary button
-  factory AppButton.primary({
+  factory AppLoaderButton.primary({
     required VoidCallback onPressed,
     required String title,
     bool isDisabled = false,
@@ -77,7 +77,7 @@ class AppButton extends StatelessWidget {
   }
 
   /// Factory constructor for secondary button
-  factory AppButton.secondary({
+  factory AppLoaderButton.secondary({
     required VoidCallback onPressed,
     required String title,
     bool isDisabled = false,
@@ -100,7 +100,7 @@ class AppButton extends StatelessWidget {
   }
 
   /// Factory constructor for error button
-  factory AppButton.error({
+  factory AppLoaderButton.error({
     required VoidCallback onPressed,
     required String title,
     bool isDisabled = false,
@@ -139,25 +139,25 @@ class AppButton extends StatelessWidget {
       ),
       label: Text(title, style: textStyle),
       style: ButtonStyle(
-        padding: MaterialStateProperty.all(const EdgeInsets.all(AppDimensionsConstants.defaultPadding)),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        padding: WidgetStateProperty.all(const EdgeInsets.all(AppDimensionsConstants.defaultPadding)),
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSizes.size50),
             side: BorderSide.none,
           ),
         ),
-        shadowColor: MaterialStateProperty.all<Color>(shadowColor ?? const Color(0xCCE7E4E8)),
-        backgroundColor: MaterialStateProperty.resolveWith<Color>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
+        shadowColor: WidgetStateProperty.all<Color>(shadowColor ?? const Color(0xCCE7E4E8)),
+        backgroundColor: WidgetStateProperty.resolveWith<Color>(
+          (Set<WidgetState> states) {
+            if (states.contains(WidgetState.disabled)) {
               return backgroundColor?.withOpacity(0.3) ?? AppColor.primaryColor.withOpacity(0.3);
             }
             return backgroundColor ?? AppColor.primaryColor;
           },
         ),
-        foregroundColor: MaterialStateProperty.resolveWith<Color>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
+        foregroundColor: WidgetStateProperty.resolveWith<Color>(
+          (Set<WidgetState> states) {
+            if (states.contains(WidgetState.disabled)) {
               return foregroundColor ?? AppColor.whiteColor;
             }
             return foregroundColor ?? AppColor.whiteColor;
