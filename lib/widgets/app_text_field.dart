@@ -54,6 +54,8 @@ class AppTextField extends StatelessWidget {
   /// Action button to display on the keyboard.
   final TextInputAction? textInputAction;
 
+  final Widget? prefixIcon;
+
   /// Creates a custom text field widget.
   const AppTextField({
     Key? key,
@@ -73,6 +75,7 @@ class AppTextField extends StatelessWidget {
     this.horizontalPadding,
     this.enableSuggestions = true,
     this.textInputAction = TextInputAction.done,
+    this.prefixIcon
   }) : super(key: key);
 
   @override
@@ -127,8 +130,10 @@ class AppTextField extends StatelessWidget {
           ),
           prefix: prefix,
           suffixIcon: suffix,
+          prefixIcon: prefixIcon,
           contentPadding: const EdgeInsets.symmetric(horizontal: AppSizes.size24, vertical: AppSizes.size16),
         ),
+      
         validator: validator,
         inputFormatters: inputFormatter,
         onFieldSubmitted: onFieldSubmitted,

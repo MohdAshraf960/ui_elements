@@ -130,9 +130,10 @@ class AppButton extends StatelessWidget {
         visible: isLoading,
         replacement: const SizedBox.shrink(),
         child: SizedBox(
-          height: 8,
-          width: 8,
+          height: 16,
+          width: 16,
           child: CircularProgressIndicator.adaptive(
+            strokeWidth: 2,
             valueColor: AlwaysStoppedAnimation(loaderColor ?? AppColor.whiteColor),
           ),
         ),
@@ -140,7 +141,7 @@ class AppButton extends StatelessWidget {
       label: Text(title, style: textStyle),
       style: ButtonStyle(
         
-        padding: MaterialStateProperty.all(const EdgeInsets.all(AppDimensionsConstants.defaultPadding)),
+        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical:  AppDimensionsConstants.defaultPadding,horizontal: AppDimensionsConstants.defaultPadding * 2)),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSizes.size50),
