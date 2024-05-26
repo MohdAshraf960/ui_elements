@@ -61,7 +61,12 @@ class AppIcon extends StatelessWidget {
           icon!.iconPath,
           width: iconSize,
           height: iconSize,
-         
+          colorFilter: color != null
+              ? ColorFilter.mode(
+                  color!, // Set the desired color here
+                  BlendMode.srcIn,
+                )
+              : null,
         );
         break;
     }

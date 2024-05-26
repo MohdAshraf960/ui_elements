@@ -45,7 +45,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required String title,
     required String subtitle,
     required VoidCallback onIconPressed,
-    VoidCallback? onLeadingPressed,
+    required VoidCallback onLeadingPressed,
     Widget? leadingIcon,
     Widget? actionIcon,
   }) {
@@ -63,6 +63,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: AppColor.backgroundColor,
       centerTitle: true,
           leading: GestureDetector(
         onTap: onLeadingPressed ?? () => Navigator.pop(context),
@@ -104,7 +105,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Builds the secondary title which includes the title and subtitle.
   Widget _buildSecondaryTitle() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+     
       children: [
         Text(
           title,
