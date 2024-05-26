@@ -14,7 +14,7 @@ class NumButton extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(AppSizes.size16),
       child: InkWell(
         onTap: (){
           if(icon != null){

@@ -41,7 +41,7 @@ class _EditAmountState extends State<EditAmountScreen>{
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: AppSizes.size20,vertical: AppSizes.size24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children : [
@@ -56,13 +56,13 @@ class _EditAmountState extends State<EditAmountScreen>{
                 color: AppColor.subtitleTextColor
               ),),
 
-            const SizedBox(height: 8.0,),
+            const SizedBox(height: AppSizes.size8),
             Container(
               width: double.infinity,
               alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: AppSizes.size8,horizontal: AppSizes.size10),
               decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                borderRadius: BorderRadius.all(Radius.circular(AppSizes.size16)),
                 color: AppColor.textFieldBackgroundColor
               ),
               child: TextFormField(
@@ -80,7 +80,7 @@ class _EditAmountState extends State<EditAmountScreen>{
             ),
             GridView.count(physics: const NeverScrollableScrollPhysics(),crossAxisCount: 3,shrinkWrap: true,children: numbers.map((String number){
               return  NumButton(controller: widget.controller,number: number,);
-            }).toList()..add(NumButton(controller: widget.controller,icon:Icons.backspace_outlined,number: "",)),),
+            }).toList()..add(NumButton(controller: widget.controller,icon:Icons.backspace_outlined,number: "",),),),
             AppButton.primary(
               onPressed: (){
                 widget.onProceed.call(double.parse(widget.controller.text));

@@ -139,6 +139,7 @@ class AppButton extends StatelessWidget {
       ),
       label: Text(title, style: textStyle),
       style: ButtonStyle(
+        
         padding: MaterialStateProperty.all(const EdgeInsets.all(AppDimensionsConstants.defaultPadding)),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
