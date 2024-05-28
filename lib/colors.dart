@@ -47,6 +47,7 @@ class AppColor {
 
   static const Color primaryButtonShadow =  Color(0xFFE7E4E8);
   static const Color secondaryButtonShadow = Color(0xE7E4E8CC);
+  static const Color iconBackgroundColor = Color(0x1A612D98);
 }
 
 

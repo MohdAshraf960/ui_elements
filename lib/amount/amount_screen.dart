@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ui_elements/amount/num_button.dart';
 import 'package:ui_elements/colors.dart';
+import 'package:ui_elements/dialogs/dialog_manager.dart';
 
-import '../button/button.dart';
+import '../button/loader_button.dart';
 import '../sizes.dart';
 import '../text_styles.dart';
 
@@ -81,12 +82,17 @@ class _EditAmountState extends State<EditAmountScreen>{
             GridView.count(physics: const NeverScrollableScrollPhysics(),crossAxisCount: 3,shrinkWrap: true,children: numbers.map((String number){
               return  NumButton(controller: widget.controller,number: number,);
             }).toList()..add(NumButton(controller: widget.controller,icon:Icons.backspace_outlined,number: "",)),),
-            AppButton.primary(
+            AppLoaderButton.primary(
               onPressed: (){
-                widget.onProceed.call(double.parse(widget.controller.text));
-                if(widget.popOnProceed) {
-                  Navigator.of(context).pop();
-                }
+                //showDialog here
+                DialogManager.showAppDialog(
+                  title: "Request Submitted",
+                  context: context,
+                  svgPath: "assets/svg/success_icon.svg",
+                  message: "Admin will contact you for further process",
+                  positiveText: "Yes, Deactivate",
+                  negativeText: "Cancel"
+                );
               },
               title: "Proceed",
             )

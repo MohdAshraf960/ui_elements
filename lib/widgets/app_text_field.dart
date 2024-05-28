@@ -62,7 +62,7 @@ class AppTextField extends StatelessWidget{
             ),
             hintText: hint,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(32),borderSide: BorderSide.none),
-            prefix: prefix,
+            prefixIcon: prefix,
             suffixIcon: suffix,
             contentPadding: const EdgeInsets.symmetric(horizontal: 24,vertical: 16)
         ),
