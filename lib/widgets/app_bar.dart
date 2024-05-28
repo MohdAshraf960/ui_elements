@@ -65,7 +65,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: AppColor.backgroundColor,
       centerTitle: true,
-          leading: GestureDetector(
+      leadingWidth: 32,
+      leading: GestureDetector(
         onTap: onLeadingPressed ?? () => Navigator.pop(context),
         child: Visibility(
           visible: isSecondary && leadingIcon != null,
@@ -73,9 +74,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Icons.arrow_back_ios_new,
             color: AppColor.whiteColor,
           ),
-          child: leadingIcon ?? const Icon(
-            Icons.arrow_back_ios_new,
-            color: AppColor.whiteColor,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: leadingIcon ?? const Icon(
+              Icons.arrow_back_ios_new,
+              color: AppColor.whiteColor,
+            ),
           ),
         ),
       ),
