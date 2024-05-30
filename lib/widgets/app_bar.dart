@@ -65,7 +65,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: AppColor.backgroundColor,
       centerTitle: true,
-      leadingWidth: 32,
+      leadingWidth: isSecondary ? 32 : null,
       leading: GestureDetector(
         onTap: onLeadingPressed ?? () => Navigator.pop(context),
         child: Visibility(
@@ -131,6 +131,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => Size.fromHeight(
-        isSecondary ? kToolbarHeight + 40.0 : kToolbarHeight,
+        isSecondary ? kToolbarHeight + 40.0 : kToolbarHeight + 40,
       );
 }
