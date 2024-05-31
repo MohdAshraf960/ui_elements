@@ -96,7 +96,9 @@ class AppTextField extends StatelessWidget {
           decoration: TextDecoration.none,
           decorationThickness: 0,
         ),
+        
         decoration: InputDecoration(
+          
           filled: true,
           fillColor: AppColor.textFieldBackgroundColor,
           hintStyle: AppTextStyle.regular(
@@ -132,6 +134,10 @@ class AppTextField extends StatelessWidget {
           suffixIcon: suffix,
           prefixIcon: prefixIcon,
           contentPadding: const EdgeInsets.symmetric(horizontal: AppSizes.size24, vertical: AppSizes.size16),
+          suffixIconConstraints: const BoxConstraints(
+                      minHeight: 24,
+                      minWidth: 24
+                    ),
         ),
       
         validator: validator,
