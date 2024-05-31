@@ -47,7 +47,9 @@ class AppColor {
 
   static const Color primaryButtonShadow =  Color(0xFFE7E4E8);
   static const Color secondaryButtonShadow = Color(0xE7E4E8CC);
-}
+
+  static const Color dividerColor = Color(0xFFC7D0DF);
+  }
 
 
 
