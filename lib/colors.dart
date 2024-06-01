@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-  static const Color primaryColor  = Color(0xFF03D798);
+  static const Color primaryColor = Color(0xFF03D798);
   static const Color secondaryColor = Color(0xFF8630E0);
 
   static const LinearGradient gradientOne = LinearGradient(colors: [Color(0xFF51267F), Color(0xFF9245E5)]);
@@ -43,7 +43,7 @@ class AppColor {
 
   static const Color amountText = Color(0xFF292929);
 
-  static const Color primaryButtonShadow =  Color(0xFFE7E4E8);
+  static const Color primaryButtonShadow = Color(0xFFE7E4E8);
   static const Color secondaryButtonShadow = Color(0xE7E4E8CC);
 
   static const Color dividerColor = Color(0xFFC7D0DF);
@@ -62,9 +62,8 @@ class AppColor {
 
   static const Color payPalInfoTextColor = Color(0xFFF8F5F5);
 
-  }
-
-
-
-
-
+  static const LinearGradient grdYellow =  LinearGradient(
+      colors: [Color(0xFFFF9900), Color(0xFFFFECAA)], begin: Alignment.topLeft, end: Alignment.bottomRight);
+  static const LinearGradient grdPink =  LinearGradient(
+      colors: [Color(0xFFE7006F), Color(0xFFFFC3EE)], begin: Alignment.topLeft, end: Alignment.bottomRight);
+}
