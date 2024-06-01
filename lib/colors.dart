@@ -49,6 +49,8 @@ class AppColor {
   static const Color dividerColor = Color(0xFFC7D0DF);
 
   static const Color iconBackgroundColor = Color(0x1A612D98);
+
+  static const Color tileIconColor = Color(0xFF9245E5);
   }
 
 
