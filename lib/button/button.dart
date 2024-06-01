@@ -12,6 +12,7 @@ class AppButton extends StatelessWidget {
     this.loaderColor,
     this.shadowColor,
     this.textStyle,
+    this.minimumSize
   });
 
   final VoidCallback onPressed;
@@ -23,6 +24,7 @@ class AppButton extends StatelessWidget {
   final Color? loaderColor;
   final Color? shadowColor;
   final TextStyle? textStyle;
+  final MaterialStateProperty<Size> ? minimumSize;
 
   /// Private helper method to create an AppButton
   static AppButton _createButton({
@@ -35,6 +37,7 @@ class AppButton extends StatelessWidget {
     Color? foregroundColor,
     Color? loaderColor,
     AppTextStyle? textStyle,
+    MaterialStateProperty<Size> ? minimumSize
   }) {
     return AppButton._(
       isLoading: isLoading,
@@ -45,6 +48,7 @@ class AppButton extends StatelessWidget {
       foregroundColor: foregroundColor,
       loaderColor: loaderColor,
       shadowColor: shadowColor,
+      minimumSize: minimumSize,
       textStyle: textStyle ??
           AppTextStyle.medium(
             fontSize: AppSizes.size16,
@@ -62,6 +66,7 @@ class AppButton extends StatelessWidget {
     Color? foregroundColor,
     Color? loaderColor,
     AppTextStyle? textStyle,
+    MaterialStateProperty<Size> ? minimumSize
   }) {
     return _createButton(
       onPressed: onPressed,
@@ -73,6 +78,7 @@ class AppButton extends StatelessWidget {
       foregroundColor: foregroundColor,
       loaderColor: loaderColor,
       textStyle: textStyle,
+      minimumSize: minimumSize
     );
   }
 
@@ -85,6 +91,7 @@ class AppButton extends StatelessWidget {
     Color? foregroundColor,
     Color? loaderColor,
     AppTextStyle? textStyle,
+    MaterialStateProperty<Size> ? minimumSize
   }) {
     return _createButton(
       onPressed: onPressed,
@@ -96,6 +103,7 @@ class AppButton extends StatelessWidget {
       foregroundColor: foregroundColor,
       loaderColor: loaderColor,
       textStyle: textStyle,
+      minimumSize: minimumSize
     );
   }
 
@@ -108,40 +116,32 @@ class AppButton extends StatelessWidget {
     Color? foregroundColor,
     Color? loaderColor,
     AppTextStyle? textStyle,
+    MaterialStateProperty<Size> ? minimumSize
   }) {
     return _createButton(
       onPressed: onPressed,
       title: title,
       backgroundColor: AppColor.errorColor,
-      shadowColor: AppColor.secondaryButtonShadow, 
+      shadowColor: AppColor.secondaryButtonShadow,
       isDisabled: isDisabled,
       isLoading: isLoading,
       foregroundColor: foregroundColor,
       loaderColor: loaderColor,
       textStyle: textStyle,
+      minimumSize: minimumSize
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
+    return ElevatedButton(
       onPressed: isDisabled || isLoading ? null : onPressed,
-      icon: Visibility(
-        visible: isLoading,
-        replacement: const SizedBox.shrink(),
-        child: SizedBox(
-          height: 16,
-          width: 16,
-          child: CircularProgressIndicator.adaptive(
-            strokeWidth: 2,
-            valueColor: AlwaysStoppedAnimation(loaderColor ?? AppColor.whiteColor),
-          ),
-        ),
-      ),
-      label: Text(title, style: textStyle),
       style: ButtonStyle(
-        
-        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical:  AppDimensionsConstants.defaultPadding,horizontal: AppDimensionsConstants.defaultPadding * 2)),
+        minimumSize:   minimumSize,
+        padding: MaterialStateProperty.all(
+          const EdgeInsets.symmetric(
+              vertical: AppDimensionsConstants.defaultPadding, horizontal: AppDimensionsConstants.defaultPadding * 2),
+        ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSizes.size50),
@@ -165,6 +165,25 @@ class AppButton extends StatelessWidget {
             return foregroundColor ?? AppColor.whiteColor;
           },
         ),
+        
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (isLoading) ...{
+            SizedBox(
+              height: 16,
+              width: 16,
+              child: CircularProgressIndicator.adaptive(
+                strokeWidth: 2,
+                valueColor: AlwaysStoppedAnimation(loaderColor ?? AppColor.whiteColor),
+              ),
+            ),
+            const SizedBox(width: 8), // Add space between the icon and the label
+          },
+          Text(title, style: textStyle),
+        ],
       ),
     );
   }

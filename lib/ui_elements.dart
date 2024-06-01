@@ -9,3 +9,5 @@ export 'extensions.dart';
 export 'button/button.dart';
 export 'widgets/widgets.dart';
 export 'icon/icon.dart';
+export 'dialogs/dialog_manager.dart';
+export 'tile/tile.dart';

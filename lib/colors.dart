@@ -1,5 +1,3 @@
-// ignore_for_file: annotate_overrides, overridden_fields
-
 import 'package:flutter/material.dart';
 
 class AppColor {
@@ -47,7 +45,11 @@ class AppColor {
 
   static const Color primaryButtonShadow =  Color(0xFFE7E4E8);
   static const Color secondaryButtonShadow = Color(0xE7E4E8CC);
-}
+
+  static const Color dividerColor = Color(0xFFC7D0DF);
+
+  static const Color iconBackgroundColor = Color(0x1A612D98);
+  }
 
 
 
