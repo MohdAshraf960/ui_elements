@@ -49,6 +49,19 @@ class AppColor {
   static const Color dividerColor = Color(0xFFC7D0DF);
 
   static const Color iconBackgroundColor = Color(0x1A612D98);
+
+  static const Color tileIconColor = Color(0xFF9245E5);
+
+  static const Color payPalBorderColor = Color(0xFFCAC7C7);
+
+  static const Color payPalSecondaryText = Color(0xFF1F1F1F);
+
+  static const Color payPalAmountTextColor = Color(0xFF9F9F9F);
+
+  static const Color payPalButtonColor = Color(0xFF0070E0);
+
+  static const Color payPalInfoTextColor = Color(0xFFF8F5F5);
+
   }
 
 

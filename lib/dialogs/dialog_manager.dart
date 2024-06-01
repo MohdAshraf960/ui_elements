@@ -6,7 +6,7 @@ import 'package:ui_elements/constants.dart';
 import 'package:ui_elements/sizes.dart';
 import 'package:ui_elements/text_styles.dart';
 
-class DialogManager{
+class DialogManager {
   static void showAppDialog({
     required BuildContext context,
     required String title,
@@ -19,65 +19,74 @@ class DialogManager{
     int? autoDismissTime,
     VoidCallback? onPositiveClick,
     VoidCallback? onNegativeClick,
-
-
   }) {
-    if(autoDismiss) {
+    if (autoDismiss) {
       dismissible = false;
-      if(autoDismissTime == null) {
+      if (autoDismissTime == null) {
         throw ArgumentError("autoDismissTime should not null if autoDismiss is true");
-      }else{
-        Future.delayed(Duration(seconds: autoDismissTime),(){
+      } else {
+        Future.delayed(Duration(seconds: autoDismissTime), () {
           Navigator.of(context).pop();
         });
       }
     }
 
     showDialog(
-      context: context,
-      barrierDismissible: dismissible,
-      builder: (context){
-        return PopScope(
-          canPop: dismissible,
-          child: AlertDialog(
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(AppDimensionsConstants.deafultBorderRadius)),
-            ),
-            contentPadding: const EdgeInsets.all(AppSizes.size20),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SvgPicture.asset(svgPath,width: 125.0,height: 125.0,),
-                const SizedBox(height: AppSizes.size20),
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: AppTextStyle.regular(fontSize: AppSizes.size22, color: AppColor.primaryTextColor),
-                ),
-                const SizedBox(height: AppSizes.size10),
-                if(message != null)
-                  Text(
-                    message,
-                    textAlign: TextAlign.center,
-                    style: AppTextStyle.regular(fontSize: AppSizes.size16, color: AppColor.subtitleTextColor),
+        context: context,
+        barrierDismissible: dismissible,
+        builder: (context) {
+          return PopScope(
+            canPop: dismissible,
+            child: AlertDialog(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(AppDimensionsConstants.deafultBorderRadius)),
+              ),
+              contentPadding: const EdgeInsets.all(AppSizes.size20),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    svgPath,
+                    width: 125.0,
+                    height: 125.0,
                   ),
-                const SizedBox(height:AppSizes.size20),
-                if(positiveText != null)
-                  AppButton.error(onPressed: onPositiveClick??(){}, title: positiveText),
-
-                const SizedBox(height:AppSizes.size20),
-                if(negativeText != null)
-                  InkWell(
-                    onTap: onNegativeClick??(){
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(negativeText,style: AppTextStyle.regular(fontSize: AppSizes.size18, color: AppColor.subtitleTextColor),))
-              ],
+                  const SizedBox(height: AppSizes.size20),
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: AppTextStyle.regular(fontSize: AppSizes.size22, color: AppColor.primaryTextColor),
+                  ),
+                  const SizedBox(height: AppSizes.size10),
+                  if (message != null)
+                    Text(
+                      message,
+                      textAlign: TextAlign.center,
+                      style: AppTextStyle.regular(fontSize: AppSizes.size16, color: AppColor.subtitleTextColor),
+                    ),
+                  const SizedBox(height: AppSizes.size20),
+                  if (positiveText != null)
+                    AppButton.error(
+                        onPressed: onPositiveClick != null ? (){
+                          Navigator.of(context).pop();
+                          onPositiveClick.call();
+                        } : ()=> Navigator.pop(context),
+                        title: positiveText),
+                  const SizedBox(height: AppSizes.size20),
+                  if (negativeText != null)
+                    InkWell(
+                        onTap: onNegativeClick != null ? (){
+                          Navigator.of(context).pop();
+                          onNegativeClick.call();
+                        } : ()=> Navigator.pop(context),
+                        child: Text(
+                          negativeText,
+                          style: AppTextStyle.regular(fontSize: AppSizes.size18, color: AppColor.subtitleTextColor),
+                        ))
+                ],
+              ),
             ),
-          ),
-        );
-    });
+          );
+        });
   }
-
 }
