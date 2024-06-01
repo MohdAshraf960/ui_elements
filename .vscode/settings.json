@@ -1,0 +1,26 @@
+{
+  "dart.flutterSdkPath": ".fvm/versions/stable",
+  "workbench.colorTheme": "Default Dark+",
+  "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.lineHeight": 22,
+  "editor.fontLigatures": true,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic",
+          "foreground": "#6A9955"
+        }
+      },
+      {
+        "scope": "keyword",
+        "settings": {
+          "fontStyle": "bold",
+          "foreground": "#569CD6"
+        }
+      }
+    ]
+  }
+}
