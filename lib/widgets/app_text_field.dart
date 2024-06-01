@@ -96,7 +96,7 @@ class AppTextField extends StatelessWidget {
           decoration: TextDecoration.none,
           decorationThickness: 0,
         ),
-        
+       
         decoration: InputDecoration(
           
           filled: true,
@@ -135,8 +135,8 @@ class AppTextField extends StatelessWidget {
           prefixIcon: prefixIcon,
           contentPadding: const EdgeInsets.symmetric(horizontal: AppSizes.size24, vertical: AppSizes.size16),
           suffixIconConstraints: const BoxConstraints(
-                      minHeight: 24,
-                      minWidth: 24
+                      minHeight: AppSizes.size24,
+                      minWidth: AppSizes.size24
                     ),
         ),
       
@@ -145,6 +145,7 @@ class AppTextField extends StatelessWidget {
         onFieldSubmitted: onFieldSubmitted,
         onChanged: onChanged,
         focusNode: focusNode,
+       
       ),
     );
   }
