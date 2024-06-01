@@ -9,11 +9,14 @@ class AppListTile extends StatelessWidget{
   final String title;
   final VoidCallback? onPressed;
   final String? svgPath;
+  final Color? svgColor;
+  
 
   const AppListTile({super.key,
     required this.title,
     this.onPressed,
-    this.svgPath
+    this.svgPath,
+    this.svgColor
   });
   @override
   Widget build(BuildContext context) {
@@ -36,8 +39,7 @@ class AppListTile extends StatelessWidget{
                     color:AppColor.iconBackgroundColor,
                     borderRadius: BorderRadius.circular(AppSizes.size12)
                   ),
-                  child: SvgPicture.asset(svgPath!),
-                ),
+                  child: SvgPicture.asset(svgPath!, colorFilter: svgColor != null ? ColorFilter.mode(svgColor!,BlendMode.srcIn): null)),
               const SizedBox(width: AppSizes.size10),
               Text(title,style: AppTextStyle.regular(
                 fontSize: AppSizes.size18,
