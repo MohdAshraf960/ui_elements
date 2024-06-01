@@ -31,10 +31,17 @@ class DialogManager {
       }
     }
 
-    showDialog(
+    showGeneralDialog(
+       barrierLabel: "uidialog",
         context: context,
         barrierDismissible: dismissible,
-        builder: (context) {
+       transitionBuilder: (context, anim1, anim2, child) {
+        return SlideTransition(
+          position: Tween(begin: const Offset(0, 1), end: const Offset(0, 0)).animate(anim1),
+          child: child,
+        );
+      },
+        pageBuilder: (context,anim1,anim2) {
           return PopScope(
             canPop: dismissible,
             child: AlertDialog(
