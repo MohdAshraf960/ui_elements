@@ -1,7 +1,9 @@
+// ignore_for_file: annotate_overrides, overridden_fields
+
 import 'package:flutter/material.dart';
 
 class AppColor {
-  static const Color primaryColor = Color(0xFF03D798);
+  static const Color primaryColor  = Color(0xFF03D798);
   static const Color secondaryColor = Color(0xFF8630E0);
 
   static const LinearGradient gradientOne = LinearGradient(colors: [Color(0xFF51267F), Color(0xFF9245E5)]);
@@ -43,27 +45,12 @@ class AppColor {
 
   static const Color amountText = Color(0xFF292929);
 
-  static const Color primaryButtonShadow = Color(0xFFE7E4E8);
+  static const Color primaryButtonShadow =  Color(0xFFE7E4E8);
   static const Color secondaryButtonShadow = Color(0xE7E4E8CC);
-
-  static const Color dividerColor = Color(0xFFC7D0DF);
-
   static const Color iconBackgroundColor = Color(0x1A612D98);
-
-  static const Color tileIconColor = Color(0xFF9245E5);
-
-  static const Color payPalBorderColor = Color(0xFFCAC7C7);
-
-  static const Color payPalSecondaryText = Color(0xFF1F1F1F);
-
-  static const Color payPalAmountTextColor = Color(0xFF9F9F9F);
-
-  static const Color payPalButtonColor = Color(0xFF0070E0);
-
-  static const Color payPalInfoTextColor = Color(0xFFF8F5F5);
-
-  static const LinearGradient grdYellow =  LinearGradient(
-      colors: [Color(0xFFFF9900), Color(0xFFFFECAA)], begin: Alignment.topLeft, end: Alignment.bottomRight);
-  static const LinearGradient grdPink =  LinearGradient(
-      colors: [Color(0xFFE7006F), Color(0xFFFFC3EE)], begin: Alignment.topLeft, end: Alignment.bottomRight);
 }
+
+
+
+
+
