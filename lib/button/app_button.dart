@@ -12,6 +12,8 @@ class AppButton extends StatelessWidget {
     this.loaderColor,
     this.shadowColor,
     this.textStyle,
+    this.width,
+    this.padding
   });
 
   final VoidCallback onPressed;
@@ -19,10 +21,12 @@ class AppButton extends StatelessWidget {
   final bool isDisabled;
   final Color? backgroundColor;
   final bool isLoading;
+  final double? width;
   final Color? foregroundColor;
   final Color? loaderColor;
   final Color? shadowColor;
   final TextStyle? textStyle;
+  final EdgeInsets? padding;
 
   /// Private helper method to create an AppButton
   static AppButton _createButton({
@@ -35,12 +39,16 @@ class AppButton extends StatelessWidget {
     Color? foregroundColor,
     Color? loaderColor,
     AppTextStyle? textStyle,
+    double? width,
+    EdgeInsets? padding
   }) {
     return AppButton._(
       isLoading: isLoading,
       onPressed: onPressed,
       title: title,
       isDisabled: isDisabled,
+      width: width,
+      padding: padding,
       backgroundColor: backgroundColor,
       foregroundColor: foregroundColor,
       loaderColor: loaderColor,
@@ -62,6 +70,8 @@ class AppButton extends StatelessWidget {
     Color? foregroundColor,
     Color? loaderColor,
     AppTextStyle? textStyle,
+    double? width,
+    EdgeInsets? padding
   }) {
     return _createButton(
       onPressed: onPressed,
@@ -73,6 +83,8 @@ class AppButton extends StatelessWidget {
       foregroundColor: foregroundColor,
       loaderColor: loaderColor,
       textStyle: textStyle,
+      padding: padding,
+      width: width
     );
   }
 
@@ -82,9 +94,11 @@ class AppButton extends StatelessWidget {
     required String title,
     bool isDisabled = false,
     bool isLoading = false,
+    double? width,
     Color? foregroundColor,
     Color? loaderColor,
     AppTextStyle? textStyle,
+    EdgeInsets? padding
   }) {
     return _createButton(
       onPressed: onPressed,
@@ -96,6 +110,8 @@ class AppButton extends StatelessWidget {
       foregroundColor: foregroundColor,
       loaderColor: loaderColor,
       textStyle: textStyle,
+      width:width,
+      padding:padding,
     );
   }
 
@@ -124,35 +140,39 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: isDisabled || isLoading ? null : onPressed,
-      style: ButtonStyle(
-        padding: WidgetStateProperty.all(const EdgeInsets.all(AppDimensionsConstants.defaultPadding)),
-        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppSizes.size50),
-            side: BorderSide.none,
+    return Container(
+      padding: padding,
+      width: width,
+      child: ElevatedButton(
+        onPressed: isDisabled || isLoading ? null : onPressed,
+        style: ButtonStyle(
+          padding: WidgetStateProperty.all(const EdgeInsets.all(AppDimensionsConstants.defaultPadding)),
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppSizes.size50),
+              side: BorderSide.none,
+            ),
+          ),
+          shadowColor: WidgetStateProperty.all<Color>(shadowColor ?? const Color(0xCCE7E4E8)),
+          backgroundColor: WidgetStateProperty.resolveWith<Color>(
+            (Set<WidgetState> states) {
+              if (states.contains(WidgetState.disabled)) {
+                return backgroundColor?.withOpacity(0.3) ?? AppColor.primaryColor.withOpacity(0.3);
+              }
+              return backgroundColor ?? AppColor.primaryColor;
+            },
+          ),
+          foregroundColor: WidgetStateProperty.resolveWith<Color>(
+            (Set<WidgetState> states) {
+              if (states.contains(WidgetState.disabled)) {
+                return foregroundColor ?? AppColor.whiteColor;
+              }
+              return foregroundColor ?? AppColor.whiteColor;
+            },
           ),
         ),
-        shadowColor: WidgetStateProperty.all<Color>(shadowColor ?? const Color(0xCCE7E4E8)),
-        backgroundColor: WidgetStateProperty.resolveWith<Color>(
-          (Set<WidgetState> states) {
-            if (states.contains(WidgetState.disabled)) {
-              return backgroundColor?.withOpacity(0.3) ?? AppColor.primaryColor.withOpacity(0.3);
-            }
-            return backgroundColor ?? AppColor.primaryColor;
-          },
-        ),
-        foregroundColor: WidgetStateProperty.resolveWith<Color>(
-          (Set<WidgetState> states) {
-            if (states.contains(WidgetState.disabled)) {
-              return foregroundColor ?? AppColor.whiteColor;
-            }
-            return foregroundColor ?? AppColor.whiteColor;
-          },
-        ),
+        child: Text(title, style: textStyle),
       ),
-      child: Text(title, style: textStyle),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:ui_elements/amount/num_button.dart';
 import 'package:ui_elements/colors.dart';
 import 'package:ui_elements/dialogs/dialog_manager.dart';
 
+import '../button/app_button.dart';
 import '../button/loader_button.dart';
 import '../sizes.dart';
 import '../text_styles.dart';
@@ -82,7 +83,9 @@ class _EditAmountState extends State<EditAmountScreen>{
             GridView.count(physics: const NeverScrollableScrollPhysics(),crossAxisCount: 3,shrinkWrap: true,children: numbers.map((String number){
               return  NumButton(controller: widget.controller,number: number,);
             }).toList()..add(NumButton(controller: widget.controller,icon:Icons.backspace_outlined,number: "",)),),
-            AppLoaderButton.primary(
+            AppButton.primary(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 35),
               onPressed: (){
                 //showDialog here
                 DialogManager.showAppDialog(
