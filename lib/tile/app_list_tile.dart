@@ -41,10 +41,12 @@ class AppListTile extends StatelessWidget{
                   ),
                   child: SvgPicture.asset(svgPath!, colorFilter: svgColor != null ? ColorFilter.mode(svgColor!,BlendMode.srcIn): null)),
               const SizedBox(width: AppSizes.size10),
-              Text(title,style: AppTextStyle.regular(
-                fontSize: AppSizes.size18,
-                color: AppColor.primaryTextColor
-              ),),
+              FittedBox(
+                child: Text(title,style: AppTextStyle.regular(
+                  fontSize: AppSizes.size18,
+                  color: AppColor.primaryTextColor
+                ),),
+              ),
             ],
           ),
         ),
