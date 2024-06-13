@@ -38,7 +38,7 @@ class _EditAmountState extends State<EditAmountScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.arrow_back_ios),
+        leading: InkWell(onTap: (){Navigator.pop(context);},child:Icon(Icons.arrow_back_ios)),
         title: Text(widget.title),
         centerTitle: true,
       ),
@@ -87,15 +87,7 @@ class _EditAmountState extends State<EditAmountScreen>{
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 35),
               onPressed: (){
-                //showDialog here
-                DialogManager.showAppDialog(
-                  title: "Request Submitted",
-                  context: context,
-                  svgPath: "assets/svg/success_icon.svg",
-                  message: "Admin will contact you for further process",
-                  positiveText: "Yes, Deactivate",
-                  negativeText: "Cancel"
-                );
+                widget.onProceed(double.tryParse(widget.controller.text));
               },
               title: "Proceed",
             )
