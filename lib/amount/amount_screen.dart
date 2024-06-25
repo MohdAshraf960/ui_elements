@@ -29,16 +29,15 @@ class EditAmountScreen extends StatefulWidget {
   /// information, [popOnProceed] determines if the screen should pop on proceed, [onProceed] is the
   /// callback when the proceed button is pressed, [scaffoldBackgroundColor] sets the background color
   /// of the scaffold, and [proceedButtonTitle] sets the title of the proceed button.
-  EditAmountScreen({
-    super.key,
-    this.title = "Enter Amount",
-    this.name,
-    this.uuid,
-    this.popOnProceed = false,
-    required this.onProceed,
-    this.scaffoldBackgroundColor = AppColor.whiteColor,
-    this.proceedButtonTitle = "Proceed"
-  });
+  EditAmountScreen(
+      {super.key,
+      this.title = "Enter Amount",
+      this.name,
+      this.uuid,
+      this.popOnProceed = false,
+      required this.onProceed,
+      this.scaffoldBackgroundColor = AppColor.whiteColor,
+      this.proceedButtonTitle = "Proceed"});
 
   @override
   State<StatefulWidget> createState() {
@@ -121,20 +120,19 @@ class _EditAmountState extends State<EditAmountScreen> {
                 ),
             ),
             ValueListenableBuilder<TextEditingValue>(
-              valueListenable: widget.controller,
-              builder: (context, value,child) {
-                return AppButton.primary(
-                  isDisabled: value.text == "0" || value.text.isEmpty,
-                  onPressed: () {
-                    widget.onProceed.call(double.tryParse(CurrencyInputFormatter.getRawValue(widget.controller.text)));
-                    if (widget.popOnProceed) {
-                      Navigator.of(context).pop();
-                    }
-                  },
-                  title: widget.proceedButtonTitle,
-                );
-              }
-            )
+                valueListenable: widget.controller,
+                builder: (context, value, child) {
+                  return AppButton.primary(
+                    isDisabled: value.text == "0" || value.text.isEmpty || int.parse(CurrencyInputFormatter.getRawValue(value.text)) > 1000,
+                    onPressed: () {
+                      widget.onProceed.call(double.tryParse(CurrencyInputFormatter.getRawValue(widget.controller.text)));
+                      if (widget.popOnProceed) {
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    title: widget.proceedButtonTitle,
+                  );
+                })
           ],
         ),
       ),
