@@ -71,69 +71,71 @@ class _EditAmountState extends State<EditAmountScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppSizes.size20, vertical: AppSizes.size24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (widget.name != null)
-              Text(
-                widget.name!,
-                style: AppTextStyle.regular(fontSize: AppSizes.size16, color: AppColor.subtitleTextColor),
-              ),
-            if (widget.uuid != null)
-              Text(
-                "UUID: ${widget.uuid}",
-                style: AppTextStyle.regular(fontSize: AppSizes.size16, color: AppColor.subtitleTextColor),
-              ),
-            const SizedBox(height: AppSizes.size8),
-            Container(
-              width: double.infinity,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(vertical: AppSizes.size8, horizontal: AppSizes.size10),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(AppDimensionsConstants.deafultBorderRadius)),
-                color: AppColor.textFieldBackgroundColor,
-              ),
-              child: TextFormField(
-                controller: widget.controller,
-                readOnly: true,
-                textAlign: TextAlign.center,
-                style: AppTextStyle.semiBold(fontSize: AppSizes.size38),
-                decoration: const InputDecoration(hintText: "0", border: InputBorder.none),
-              ),
-            ),
-            GridView.count(
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 3,
-              shrinkWrap: true,
-              children: numbers.map((String number) {
-                return NumButton(
-                  controller: widget.controller,
-                  number: number,
-                );
-              }).toList()
-                ..add(
-                  NumButton(
-                    controller: widget.controller,
-                    icon: Icons.backspace_outlined,
-                    number: "",
-                  ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (widget.name != null)
+                Text(
+                  widget.name!,
+                  style: AppTextStyle.regular(fontSize: AppSizes.size16, color: AppColor.subtitleTextColor),
                 ),
-            ),
-            ValueListenableBuilder<TextEditingValue>(
-                valueListenable: widget.controller,
-                builder: (context, value, child) {
-                  return AppButton.primary(
-                    isDisabled: value.text == "0" || value.text.isEmpty || int.parse(CurrencyInputFormatter.getRawValue(value.text)) > 1000,
-                    onPressed: () {
-                      widget.onProceed.call(double.tryParse(CurrencyInputFormatter.getRawValue(widget.controller.text)));
-                      if (widget.popOnProceed) {
-                        Navigator.of(context).pop();
-                      }
-                    },
-                    title: widget.proceedButtonTitle,
+              if (widget.uuid != null)
+                Text(
+                  "UUID: ${widget.uuid}",
+                  style: AppTextStyle.regular(fontSize: AppSizes.size16, color: AppColor.subtitleTextColor),
+                ),
+              const SizedBox(height: AppSizes.size8),
+              Container(
+                width: double.infinity,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(vertical: AppSizes.size8, horizontal: AppSizes.size10),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(AppDimensionsConstants.deafultBorderRadius)),
+                  color: AppColor.textFieldBackgroundColor,
+                ),
+                child: TextFormField(
+                  controller: widget.controller,
+                  readOnly: true,
+                  textAlign: TextAlign.center,
+                  style: AppTextStyle.semiBold(fontSize: AppSizes.size38),
+                  decoration: const InputDecoration(hintText: "0", border: InputBorder.none),
+                ),
+              ),
+              GridView.count(
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisCount: 3,
+                shrinkWrap: true,
+                children: numbers.map((String number) {
+                  return NumButton(
+                    controller: widget.controller,
+                    number: number,
                   );
-                })
-          ],
+                }).toList()
+                  ..add(
+                    NumButton(
+                      controller: widget.controller,
+                      icon: Icons.backspace_outlined,
+                      number: "",
+                    ),
+                  ),
+              ),
+              ValueListenableBuilder<TextEditingValue>(
+                  valueListenable: widget.controller,
+                  builder: (context, value, child) {
+                    return AppButton.primary(
+                      isDisabled: value.text == "0" || value.text.isEmpty || int.parse(CurrencyInputFormatter.getRawValue(value.text)) > 1000,
+                      onPressed: () {
+                        widget.onProceed.call(double.tryParse(CurrencyInputFormatter.getRawValue(widget.controller.text)));
+                        if (widget.popOnProceed) {
+                          Navigator.of(context).pop();
+                        }
+                      },
+                      title: widget.proceedButtonTitle,
+                    );
+                  })
+            ],
+          ),
         ),
       ),
     );
